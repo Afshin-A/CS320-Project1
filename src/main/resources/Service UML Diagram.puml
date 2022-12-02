@@ -12,63 +12,63 @@ hide empty members
 
 package services {
     abstract class Service<T extends ServiceData> {
-        #Map<String, T>
-        #validateID(String)
-        +add(String, T)
-        +T remove(String)
-        #update(String, T)
+        # database: Map<String, T>
+        # validateID(String)
+        + add(String, T)
+        + remove(String): T
+        # update(String, T)
     }
-    class ContactService extends Service {
-        +update(String, String, String, String, String)
-        +update(String, Contact)
+    class ContactService<Contact> extends Service {
+        + update(String, String, String, String, String)
+        + update(String, Contact)
     }
-    class TaskService extends Service {
-        +update(String, String, String)
-        +update(String, Task)
+    class TaskService<Task> extends Service {
+        + update(String, String, String)
+        + update(String, Task)
     }
-    class AppointmentService extends Service {
+    class AppointmentService<Appointment> extends Service {
 
     }
 }
 
 package data {
     abstract class ServiceData {
-        #validateField(String, int)
+        # validateField(String, int)
     }
     class Contact extends ServiceData {
-        -String firstName
-        -String lastName
-        -String phone
-        -String address
-        +Contact(String, String, String, String)
-        +setFirstName(String)
-        +setLastName(String)
-        +setPhone(String)
-        +setAddress(String)
+        - firstName: String
+        - lastName: String
+        - phone: String
+        - address: String
+        + Contact(String, String, String, String)
+        + setFirstName(String)
+        + setLastName(String)
+        + setPhone(String)
+        + setAddress(String)
     }
     class Task extends ServiceData {
-        -String taskName
-        -String taskDescription
-        +Task(String, String)
-        +setTaskName(String)
-        +setTaskDescription(String)
+        - taskName: String
+        - taskDescription: String
+        + Task(String, String)
+        + setTaskName(String)
+        + setTaskDescription(String)
     }
     class Appointment extends ServiceData {
-        -Date appointmentDate
-        -String appointmentDescription
-        +Appointment(Date, String)
-        +setAppointmentDate(Date)
-        +setAppointmentDescription(String)
+        - appointmentDate: Date
+        - appointmentDescription: String
+        + Appointment(Date, String)
+        + setAppointmentDate(Date)
+        + setAppointmentDescription(String)
     }
 }
 
 
 package validations {
     class Validations {
-        {static} +validateStringLengthIsInRange(String, int)
-        {static} +validateStringLengthEquals(String, int)
-        {static} +validateStringContainsAllDigits(String)
-        {static} +validateObjectNotNull(Object)
+        {static} + validateStringLengthIsInRange(String, int)
+        {static} + validateStringLengthEquals(String, int)
+        {static} + validateStringContainsAllDigits(String)
+        {static} + validateObjectNotNull(Object)
     }
 '    note left of Validations::validateObjectNotNull
 '    "Test"
@@ -77,11 +77,9 @@ package validations {
 
 class java.util.Date
 
-services -- data
-data -- validations
-ServiceData -- validations
-java.util.Date -- Appointment
-
+services -- data: Association
+ServiceData o--> validations: dependency
+java.util.Date <-[dashed]- Appointment: dependency
 
 
 @enduml
