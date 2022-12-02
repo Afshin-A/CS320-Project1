@@ -66,6 +66,7 @@ abstract class Service <T extends ServiceData> {
 
 
     // FIXME: 12/1/22 Remove this method before publishing final build
+    @Deprecated(forRemoval = true)
     public void showDatabase() {
         System.out.println(database);
     }

@@ -23,14 +23,12 @@ public final class Task extends ServiceData {
 
     // Setters
     public void setTaskName(final String taskName) {
-        Validations.validateObjectNotNull(taskName);
-        Validations.validateStringLengthIsInRange(taskName, 20);
+        super.validateField(taskName, 20);
         this.taskName = taskName;
     }
 
     public void setTaskDescription(final String taskDescription) {
-        Validations.validateObjectNotNull(taskDescription);
-        Validations.validateStringLengthIsInRange(taskDescription, 50);
+        super.validateField(taskDescription, 50);
         this.taskDescription = taskDescription;
     }
 

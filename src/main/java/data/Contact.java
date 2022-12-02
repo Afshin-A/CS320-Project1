@@ -40,14 +40,12 @@ public final class Contact extends ServiceData{
 
     // Setters
     public void setFirstName(final String firstName) {
-        Validations.validateObjectNotNull(firstName);
-        Validations.validateStringLengthIsInRange(firstName, 10);
+        super.validateField(firstName, 10);
         // if no exception is thrown, proceed with assignment
         this.firstName = firstName;
     }
     public void setLastName(final String lastName) {
-        Validations.validateObjectNotNull(lastName);
-        Validations.validateStringLengthIsInRange(lastName, 10);
+        super.validateField(lastName, 10);
         this.lastName = lastName;
     }
     public void setPhoneNumber(final String phoneNumber) {
@@ -57,22 +55,21 @@ public final class Contact extends ServiceData{
         this.phone = phoneNumber;
     }
     public void setAddress(final String address) {
-        Validations.validateObjectNotNull(address);
-        Validations.validateStringLengthIsInRange(address, 30);
+        super.validateField(address, 30);
         this.address = address;
     }
 
     // Getters
-    public String firstName() {
+    public String getFirstName() {
         return this.firstName;
     }
-    public String lastName() {
+    public String getLastName() {
         return this.lastName;
     }
-    public String phone() {
+    public String getPhone() {
         return this.phone;
     }
-    public String address() {
+    public String getAddress() {
         return this.address;
     }
 
@@ -86,7 +83,7 @@ public final class Contact extends ServiceData{
         if (this == obj) {
             return true;
         }
-        if (this == null) {
+        if (obj == null) {
             return false;
         }
         return (obj instanceof Contact)

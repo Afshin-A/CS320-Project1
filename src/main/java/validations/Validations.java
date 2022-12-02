@@ -7,7 +7,7 @@ public class Validations {
     private Validations() {}
 
     /**
-     * Used to ensure length of a given string is between 0 and max
+     * Used to ensure length of a given string is between 0 (exclusive) and max (inclusive)
      * @param arg String to operate on
      * @param max Maximum valid length for arg
      * @throws IllegalArgumentException
